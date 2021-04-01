@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>YJS Job Search</title>
+<style>
+	*, :after, :before {
+    box-sizing: border-box;
+    border: 0 solid #d2d6dc;
+  }
+
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	html,
+	body {
+		width: 100%;
+		font-family: "Open Sans", sans-serif;
+    background-color: #EFEFF1;
+	}
+
+  .container {
+    width: 100%;
+    display: flex;
+		flex-direction: column;
+  }
+
+  .container .header {
+    width: 100%;
+    flex-direction: column;
+		justify-content: center;
+    align-items: center;
+  }
+
+  .header h1,
+  .header h2 {
+    width: 100%;
+    display: flex;
+		justify-content: center;
+    align-items: center;
+  }
+
+  .header .btn-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .header .export {
+    width: 100px;
+    height: 50px;
+    background-color: #0097FB;
+    color: #ffffff;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .header .export:hover {
+    background-color: #0068ad;
+  }
+
+	main {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		font-size: 12px;
+		color: black;
+	}
+
+	main section {
+		width: 200px;
+		height: 150px;
+		padding: 5px;
+		/*border: 1px solid black;*/
+    background-color: #FAFAFA;
+		border-radius: 5px;
+		margin-left: 20px;
+		margin-bottom: 20px;
+		overflow: hidden;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    transform: none;
+	}
+
+  main section:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+
+	main section .link {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	main section .link .logo-box {
+		width: 100%;
+		height: 100%;
+		padding-bottom: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	main section .link .logo {
+		width: 50px !important;
+		height: 50px !important;
+		object-fit: contain;
+		object-position: center;
+	}
+
+	main section .link .no-logo {
+		width: 50px !important;
+		height: 50px !important;
+		object-fit: contain;
+		object-position: center;
+		border: 2px dotted #ddd;
+    opacity: 0.7;
+    font-weight: bold;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	main section .link .company {
+		margin-bottom: 10px;
+		font-weight: bold;
+	}
+
+	main section .link .title {
+		margin-bottom: 10px;
+	}
+
+	main section .link .location {
+		font-size: 11px;
+	}
+</style>
+</head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>YJS Job Search Results</h1>
+        <h2>Found {{total_jobs['resultsNumber']}} results for: {{searchingBy}}</h2>
+        <div class="btn-box">
+          <a href="/export?word={{searchingBy}}">
+            <button class="export">Export to CSV</button>
+          </a>
+        </div>
+      </header>
+      <main class="main">
+        {% for job in total_jobs['so'] %}
+        <section>
+          <a href="{{job.link}}" target="_blank" class="link">
+            <div class="logo-box">
+              {% if job.image: %}
+              <img src="{{job.image}}" class="logo"/>
+              {% else: %}
+              <div class="no-logo"">no<br/>image</div>
+              {% endif %}
+            </div>
+            <span class="company">{{job.company}}</span>
+            <span class="title">{{job.title[0:70]+"..."}}</span>
+            <span class="location">{{job.location}}</span>
+          </a>
+        </section>
+        {% endfor %}
+        {% for job in total_jobs['we'] %}
+        <section>
+          <a href="{{job.link}}" target="_blank" class="link">
+            <div class="logo-box">
+              {% if job.image: %}
+              <img src="{{job.image}}" class="logo"/>
+              {% else: %}
+              <div class="no-logo"">no<br/>image</div>
+              {% endif %}
+            </div>
+            <span class="company">{{job.company}}</span>
+            <span class="title">{{job.title[0:70]+"..."}}</span>
+            <span class="location">{{job.location}}</span>
+          </a>
+        </section>
+        {% endfor %}
+        {% for job in total_jobs['ok'] %}
+        <section>
+          <a href="{{job.link}}" target="_blank" class="link">
+            <div class="logo-box">
+              {% if job.image: %}
+              <img src="{{job.image}}" class="logo"/>
+              {% else: %}
+              <div class="no-logo"">no<br/>image</div>
+              {% endif %}
+            </div>
+            <span class="company">{{job.company}}</span>
+            <span class="title">{{job.title[0:70]+"..."}}</span>
+            <span class="location">{{job.location}}</span>
+          </a>
+        </section>
+        {% endfor %}
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Program Language Ranking</title>
+  <style>
+    li {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(6, 1fr);
+    }
+  </style>
+</head>
+  <body>
+    <div class="container">
+      <h1>Program Language Ranking</h1>
+      <ul>
+      {% for top in top20: %}
+        <li>
+          <span>{{top['current yyyymm']}}</span>
+          <span>{{top['before yyyymm']}}</span>
+          {% if loop.index == 1: %}
+          <span>{{top['Change_img']}}</span>
+          {% else %}
+          <span><img src="{{top['Change_img']}}"/></span>
+          {% endif %}
+          <span>{{top['Programming Language']}}</span>
+          <span>{{top['Ratings']}}</span>
+          <span>{{top['Change']}}</span>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>

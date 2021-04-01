@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>YJS Job Search</title>
+  <style>
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    html,
+    body {
+      width: 100%;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .container .header {
+      width: 30%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container .header h1,
+    .container .header h2,
+    .container .header form {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container .header input {
+      width: 200px;
+      height: 30px;
+      margin-right: 10px;
+      font-size: 15px;
+    }
+
+    .container .header button {
+      width: 70px;
+      height: 30px;
+      background-color: #0097FB;
+      color: #ffffff;
+      border-radius: 15px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .container .header button:hover {
+      background-color: #0068ad;
+    }
+
+    .container .img-box {
+      width: 100%;
+      padding: 70px 30px 30px 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .container .img-box img {
+      width: 120px;
+      padding-left: 20px;
+      padding-bottom: 20px;
+    }
+
+    .container main {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main ul {
+      width: 90%;
+    }
+
+    main ul li {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(6, 1fr);
+      line-height: 1.42857;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    main ul li:first-child {
+      border-bottom: 2px solid #ddd;
+      font-weight: bold;
+    }
+
+    main ul li:nth-child(2n+2) {
+      background-color: #f9f9f9;
+    }
+
+    @media screen and (max-width: 550px) {
+      main {
+        display: none;
+      }
+    }
+  </style>
+</head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>YJS Job Search Results</h1>
+        <form action="/report" method="get">
+          <input name="word" placeholder='search for a job' required />
+          <button>Search</button>
+        </form>
+        <div class="img-box">
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/css3_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/csslayout_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/es6_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/go_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/graphql_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/html_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/js_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/mongodb_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/nodejs_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/pug_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/python_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/react_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/redux_icon.png?raw=true"/>
+          <img src="https://github.com/jungsikyeo/kakao-clone/blob/master/images/typescript_icon.png?raw=true"/>
+        </div>
+      </header>
+      <main>
+        <ul>
+          {% for top in top20: %}
+            <li>
+              <span>{{top['current yyyymm']}}</span>
+              <span>{{top['before yyyymm']}}</span>
+              {% if loop.index == 1: %}
+              <span>{{top['Change_img']}}</span>
+              {% else %}
+              <span><img src="{{top['Change_img']}}"/></span>
+              {% endif %}
+              <span>{{top['Programming Language']}}</span>
+              <span>{{top['Ratings']}}</span>
+              <span>{{top['Change']}}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>
